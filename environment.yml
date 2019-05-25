@@ -1,0 +1,8 @@
+name: psy-vtk
+channels:
+  - conda-forge
+dependencies:
+  - python=3.7
+  - panel
+  - pyvista
+  - psy-simple
