@@ -8,3 +8,5 @@ dependencies:
   - netcdf4
   - pyvista
   - psy-simple
+  - pyct
+  - pyviz_comms
