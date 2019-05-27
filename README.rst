@@ -22,6 +22,40 @@ You can run some example use cases interactively on mybinder.org: |binder|
 .. |binder| image:: https://mybinder.org/badge_logo.svg
     :target: https://mybinder.org/v2/gh/Chilipp/psy-vtk/master?filepath=examples/
 
+Installation
+============
+As stated above, you can run the latest version of this code from mybinder. If
+you, however, want to install this work in progress on your local computer,
+we recommend to use conda for it with the provided `environment.yml`_ file.
+
+Clone the repository from github::
+
+    git clone https://github.com/Chilipp/psy-vtk.git
+    cd psy-vtk
+
+and create the conda environment::
+
+    conda env create
+    conda activate psy-vtk
+
+Now install the package (with the ``-e`` flag if you want it as a development
+version)::
+
+    pip install -e .
+
+If you want to run the notebooks in the examples_ directory, you should also
+install jupyter and panel via::
+
+    conda install jupyter panel
+
+and then you can run the notebook server via::
+
+    PYVISTA_USE_PANEL=true jupyter notebook --notebook-dir=examples
+
+
+.. _environment.yml: environment.yml
+.. _examples: examples
+
 Basic proof of concept for psy-vtk
 ==================================
 
