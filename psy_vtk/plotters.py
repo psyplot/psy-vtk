@@ -5,7 +5,7 @@ all requirements and define the formatoptions and plotters that are specified
 in the :mod:`psy_vtk.plugin` module.
 """
 from psyplot.plotter import Formatoption, Plotter, BEFOREPLOTTING
-from psy_simple.plotters import CMap, Bounds, convert_radian
+from psy_simple.plotters import CMap, Bounds, Plot2D
 import numpy as np
 import pyvista as pv
 from pyvista import examples
@@ -33,58 +33,21 @@ class DataGrid(Formatoption):
         self.plot._plot_kws['show_edges'] = value
 
 
-class GlobePlot(Formatoption):
+class GlobePlot(Plot2D):
 
     default = True
-
-    plot_fmt = True
-
-    group = 'plotting'
 
     priority = BEFOREPLOTTING
 
     dependencies = ['cmap', 'bounds']
 
-    name = 'Plotter for the data'
+    def validate(self, value):
+        return bool(value)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._plot_kws = {}
         self.actor = None
-
-    @property
-    def xcoord(self):
-        """The x coordinate :class:`xarray.Variable`"""
-        return self.decoder.get_x(self.data, coords=self.data.coords)
-
-    @property
-    def ycoord(self):
-        """The y coordinate :class:`xarray.Variable`"""
-        return self.decoder.get_y(self.data, coords=self.data.coords)
-
-    @property
-    def cell_nodes_x(self):
-        """The unstructured x-boundaries with shape (N, m) where m > 2"""
-        decoder = self.decoder
-        xcoord = self.xcoord
-        data = self.data
-        xbounds = decoder.get_cell_node_coord(
-            data, coords=data.coords, axis='x')
-        if self.plotter.convert_radian:
-            xbounds = convert_radian(xbounds, xcoord, xbounds)
-        return xbounds.values
-
-    @property
-    def cell_nodes_y(self):
-        """The unstructured y-boundaries with shape (N, m) where m > 2"""
-        decoder = self.decoder
-        ycoord = self.ycoord
-        data = self.data
-        ybounds = decoder.get_cell_node_coord(
-            data, coords=data.coords, axis='y')
-        if self.plotter.convert_radian:
-            ybounds = convert_radian(ybounds, ycoord, ybounds)
-        return ybounds.values
 
     def update(self, value):
         pass
