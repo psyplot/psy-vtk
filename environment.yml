@@ -9,5 +9,6 @@ dependencies:
   - pyvista
   - psy-simple
   - pyviz_comms
+  - pip
   - pip:
     - pyct
