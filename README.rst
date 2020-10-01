@@ -17,10 +17,10 @@ You can run some example use cases interactively on mybinder.org: |binder|
 
 
 .. _pyvista: https://docs.pyvista.org
-.. _#1: https://github.com/Chilipp/psy-vtk/issues/1
+.. _#1: https://github.com/psyplot/psy-vtk/issues/1
 
 .. |binder| image:: https://mybinder.org/badge_logo.svg
-    :target: https://mybinder.org/v2/gh/Chilipp/psy-vtk/master?filepath=examples/
+    :target: https://mybinder.org/v2/gh/psyplot/psy-vtk/master?filepath=examples/
 
 Installation
 ============
@@ -30,7 +30,7 @@ we recommend to use conda for it with the provided `environment.yml`_ file.
 
 Clone the repository from github::
 
-    git clone https://github.com/Chilipp/psy-vtk.git
+    git clone https://github.com/psyplot/psy-vtk.git
     cd psy-vtk
 
 and create the conda environment::
@@ -61,7 +61,7 @@ Basic proof of concept for psy-vtk
 
 As a simple demo: Consider the following basic example (also accessible
 as a notebook the `examples/example_basic.ipynb`_ notebook and on
-`binder <https://mybinder.org/v2/gh/Chilipp/psy-vtk/master?filepath=examples/example_basic.ipynb>`_).
+`binder <https://mybinder.org/v2/gh/psyplot/psy-vtk/master?filepath=examples/example_basic.ipynb>`_).
 
 .. code:: ipython3
 
