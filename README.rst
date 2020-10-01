@@ -35,18 +35,18 @@ Clone the repository from github::
 
 and create the conda environment::
 
-    conda env create
+    conda env create -f binder/environment.yml
     conda activate psy-vtk
 
-Now install the package (with the ``-e`` flag if you want it as a development
-version)::
+Now install the package with the ``-e`` flag if you want it as a development
+version::
 
     pip install -e .
 
 If you want to run the notebooks in the examples_ directory, you should also
 install jupyter and panel via::
 
-    conda install jupyter panel
+    conda install jupyter
 
 and then you can run the notebook server via::
 
