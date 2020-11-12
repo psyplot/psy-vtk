@@ -5,6 +5,7 @@ all requirements and define the formatoptions and plotters that are specified
 in the :mod:`psy_vtk.plugin` module.
 """
 from psyplot.plotter import Formatoption, Plotter, BEFOREPLOTTING
+import psyplot
 from psy_simple.plotters import CMap, Bounds, Plot2D
 import numpy as np
 import pyvista as pv
@@ -14,6 +15,12 @@ from pyvista import examples
 # -----------------------------------------------------------------------------
 # ---------------------------- Formatoptions ----------------------------------
 # -----------------------------------------------------------------------------
+
+
+if psyplot.with_gui:
+    from pyvistaqt import BackgroundPlotter as PlotterClass
+else:
+    PlotterClass = pv.Plotter
 
 
 class DataGrid(Formatoption):
@@ -59,6 +66,10 @@ class GlobePlot(Plot2D):
         lat = self.cell_nodes_y
         lon = self.cell_nodes_x
         height = globe.points[:, -1].max() - 10
+
+        if lat.ndim > 2:
+            lat = lat.reshape((-1, lat.shape[-1]))
+            lon = lon.reshape((-1, lon.shape[-1]))
 
         # transform lon, lat into cartesian coordinates
         x = height * np.cos(lat*np.pi/180)*np.cos(lon*np.pi/180)
@@ -109,7 +120,7 @@ class GlobePlotter(Plotter):
     def ax(self):
         """Axes instance of the plot"""
         if self._ax is None:
-            self._ax = pv.Plotter()
+            self._ax = PlotterClass()
         return self._ax
 
     @ax.setter
